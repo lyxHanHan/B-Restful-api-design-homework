@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentAlreadyExistException;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentNotExistException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,14 +12,14 @@ import java.util.Map;
 
 @Service
 public class StudentService {
-    private Map<String, Student> studentMap = new HashMap<>();
+    private Map<Integer, Student> studentMap = new HashMap<>();
 
     public StudentService(){
-        studentMap.put("小王",new Student(1,"小王","男","1"));
-        studentMap.put("小李",new Student(2,"小李","男","1"));
-        studentMap.put("小明",new Student(3,"小明","男","1"));
-        studentMap.put("小赵",new Student(4,"小赵","男","1"));
-        studentMap.put("小周",new Student(5,"小周","男","1"));
+        studentMap.put(1,new Student(1,"小王","男","1"));
+        studentMap.put(2,new Student(2,"小李","男","1"));
+        studentMap.put(3,new Student(3,"小明","男","1"));
+        studentMap.put(4,new Student(4,"小赵","男","1"));
+        studentMap.put(5,new Student(5,"小周","男","1"));
     }
 
     public List<Student> getAllStudent(){
@@ -30,11 +31,33 @@ public class StudentService {
     }
 
     public void addStudent(Student student) {
-        if (studentMap.containsKey(student.getName())) {
+        if (studentMap.containsKey(student.getId())) {
             throw new StudentAlreadyExistException("该学生已经存在");
+        }else{
+            student.setId(studentMap.size());
+            studentMap.put(student.getId(), student);
         }
-        student.setId(studentMap.size());
-        studentMap.put(student.getName(), student);
+
+    }
+
+    public void deleteStudentById (Integer id){
+        if (studentMap.get(id) == null) {
+            throw new StudentNotExistException("id不存在");
+        }
+        else studentMap.remove(id);
+    }
+
+    public void updateStudentById(Integer id, Student student) {
+        if (studentMap.get(id) == null) {
+            throw new StudentNotExistException("id不存在");
+        }
+        else {
+            Student stu = studentMap.get(id);
+            stu.setName(student.getName());
+            stu.setGender(student.getGender());
+            stu.setNote(student.getNote());
+            studentMap.put(id,stu);
+        }
     }
 }
 
