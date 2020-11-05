@@ -1,13 +1,14 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.domain;
 
-import com.sun.istack.internal.NotNull;
+
+import lombok.NonNull;
 
 public class Team {
 
-    @NotNull
+    @NonNull
     private Integer id;
 
-    @NotNull
+    @NonNull
     private String name;
 
     private String note;

@@ -1,20 +1,16 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.domain;
 
 
-import com.sun.istack.internal.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Student {
-    @NotNull
+    @NonNull
     private Integer id;
-    @NotNull
+    @NonNull
     private  String name;
     private String gender;
     private String note;
