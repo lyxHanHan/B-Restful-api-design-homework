@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentAlreadyExistException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class StudentService {
     }
 
     public void addStudent(Student student) {
+        if (studentMap.containsKey(student.getName())) {
+            throw new StudentAlreadyExistException("该学生已经存在");
+        }
         student.setId(studentMap.size());
         studentMap.put(student.getName(), student);
     }
