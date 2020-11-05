@@ -43,4 +43,9 @@ public class StudentController {
         studentService.updateStudentById(id,student);
         return studentService.getStudentById(id);
     }
+
+    @GetMapping("/student/{gender}")
+    public List<Student> getStudentByGender(@PathVariable String gender) {
+        return studentService.getStudentByGender(gender);
+    }
 }

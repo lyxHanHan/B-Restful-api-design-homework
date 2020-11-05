@@ -9,17 +9,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
     private Map<Integer, Student> studentMap = new HashMap<>();
 
     public StudentService(){
-        studentMap.put(1,new Student(1,"小王","男","1"));
-        studentMap.put(2,new Student(2,"小李","男","1"));
-        studentMap.put(3,new Student(3,"小明","男","1"));
-        studentMap.put(4,new Student(4,"小赵","男","1"));
-        studentMap.put(5,new Student(5,"小周","男","1"));
+        studentMap.put(1,new Student(1,"小王","male","1"));
+        studentMap.put(2,new Student(2,"小李","male","1"));
+        studentMap.put(3,new Student(3,"小明","male","1"));
+        studentMap.put(4,new Student(4,"小赵","male","1"));
+        studentMap.put(5,new Student(5,"小周","male","1"));
     }
 
     public List<Student> getAllStudent(){
@@ -58,6 +59,14 @@ public class StudentService {
             stu.setNote(student.getNote());
             studentMap.put(id,stu);
         }
+    }
+
+    public List<Student> getStudentByGender(String gender) {
+
+        List<Student> students = studentMap.values().stream()
+                  .filter(Student -> Student.getGender().equals(gender))
+                  .collect(Collectors.toList());
+        return students;
     }
 }
 
