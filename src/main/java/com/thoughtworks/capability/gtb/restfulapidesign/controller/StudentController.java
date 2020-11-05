@@ -3,9 +3,8 @@ package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -26,5 +25,11 @@ public class StudentController {
     @GetMapping("/students/{id}")
     public Student getStudentById(@PathVariable Integer id) {
         return  studentService.getStudentById(id);
+    }
+
+    @PostMapping("/students")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addStudent(@RequestBody Student student) {
+        studentService.addStudent(student);
     }
 }

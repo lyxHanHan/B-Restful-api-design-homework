@@ -10,14 +10,14 @@ import java.util.Map;
 
 @Service
 public class StudentService {
-    private Map<Integer, Student> studentMap = new HashMap<>();
+    private Map<String, Student> studentMap = new HashMap<>();
 
     public StudentService(){
-        studentMap.put(1,new Student(1,"小王","男","1"));
-        studentMap.put(2,new Student(2,"小李","男","1"));
-        studentMap.put(3,new Student(3,"小明","男","1"));
-        studentMap.put(4,new Student(4,"小赵","男","1"));
-        studentMap.put(5,new Student(5,"小周","男","1"));
+        studentMap.put("小王",new Student(1,"小王","男","1"));
+        studentMap.put("小李",new Student(2,"小李","男","1"));
+        studentMap.put("小明",new Student(3,"小明","男","1"));
+        studentMap.put("小赵",new Student(4,"小赵","男","1"));
+        studentMap.put("小周",new Student(5,"小周","男","1"));
     }
 
     public List<Student> getAllStudent(){
@@ -26,6 +26,11 @@ public class StudentService {
 
     public Student getStudentById(Integer id) {
         return studentMap.get(id);
+    }
+
+    public void addStudent(Student student) {
+        student.setId(studentMap.size());
+        studentMap.put(student.getName(), student);
     }
 }
 
