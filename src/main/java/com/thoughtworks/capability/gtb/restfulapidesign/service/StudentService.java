@@ -23,5 +23,9 @@ public class StudentService {
     public List<Student> getAllStudent(){
         return new ArrayList<>(studentMap.values());
     }
+
+    public Student getStudentById(Integer id) {
+        return studentMap.get(id);
+    }
 }
 
