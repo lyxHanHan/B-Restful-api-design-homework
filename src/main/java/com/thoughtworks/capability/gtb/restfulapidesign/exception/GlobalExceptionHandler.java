@@ -32,4 +32,10 @@ public class GlobalExceptionHandler {
         ErrorResult errorResult = new ErrorResult(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
+
+    @ExceptionHandler(TeamNotExistException.class)
+    public ResponseEntity<ErrorResult> handle(TeamNotExistException ex) {
+        ErrorResult errorResult = new ErrorResult(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
+    }
 }

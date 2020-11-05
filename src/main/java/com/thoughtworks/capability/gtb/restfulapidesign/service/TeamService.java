@@ -1,6 +1,8 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Team;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentNotExistException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,4 +25,29 @@ public class TeamService {
     public List<Team> getAllTeams(){
         return new ArrayList<>(teamMap.values());
     }
+
+    public Team updateTeamNameById(Integer id, Team team){
+        if(teamMap.get(id)==null){
+            throw new StudentNotExistException("该小组不存在");
+        }
+        else {
+            Team group = teamMap.get(id);
+            group.setName(team.getName());
+            teamMap.put(id,group);
+            return group;
+        }
+    }
+
+//    public void updateStudentById(Integer id, Student student) {
+//        if (studentMap.get(id) == null) {
+//            throw new StudentNotExistException("id不存在");
+//        }
+//        else {
+//            Student stu = studentMap.get(id);
+//            stu.setName(student.getName());
+//            stu.setGender(student.getGender());
+//            stu.setNote(student.getNote());
+//            studentMap.put(id,stu);
+//        }
+//    }
 }

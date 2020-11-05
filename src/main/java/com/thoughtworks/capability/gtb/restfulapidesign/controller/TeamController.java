@@ -1,10 +1,10 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Team;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.TeamService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,4 +21,11 @@ public class TeamController {
         return teamService.getAllTeams();
     }
 
+    @PatchMapping("teams/{id}")
+    public Team updateTeamNameById(@PathVariable Integer id, @RequestBody Team team){
+        return  teamService.updateTeamNameById(id,team);
+    }
 }
+//    public Student updateStudentById (@PathVariable Integer id , @RequestBody Student student) {
+//        studentService.updateStudentById(id,student);
+//        return studentService.getStudentById(id);
