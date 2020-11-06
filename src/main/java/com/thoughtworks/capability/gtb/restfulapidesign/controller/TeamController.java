@@ -25,7 +25,9 @@ public class TeamController {
     public Team updateTeamNameById(@PathVariable Integer id, @RequestBody Team team){
         return  teamService.updateTeamNameById(id,team);
     }
+
+    @GetMapping("/teams/{id}")
+    public Team getTeamStudentsById (@PathVariable Integer id){
+        return teamService.getTeamStudentsById(id);
+    }
 }
-//    public Student updateStudentById (@PathVariable Integer id , @RequestBody Student student) {
-//        studentService.updateStudentById(id,student);
-//        return studentService.getStudentById(id);

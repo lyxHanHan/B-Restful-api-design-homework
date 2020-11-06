@@ -48,6 +48,10 @@ public class TeamService {
         }
     }
 
+
+    public Team getTeamStudentsById(Integer id ) {
+        return teamMap.get(id);
+    }
 //    public void updateStudentById(Integer id, Student student) {
 //        if (studentMap.get(id) == null) {
 //            throw new StudentNotExistException("id不存在");
