@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
-    private Map<Integer, Student> studentMap = new HashMap<>();
+    private static  Map<Integer, Student> studentMap = new HashMap<>();
 
     public StudentService(){
         studentMap.put(1,new Student(1,"小王","male","1"));
@@ -21,9 +21,13 @@ public class StudentService {
         studentMap.put(3,new Student(3,"小明","male","1"));
         studentMap.put(4,new Student(4,"小赵","male","1"));
         studentMap.put(5,new Student(5,"小周","male","1"));
+        studentMap.put(6,new Student(6,"小方","male","1"));
+        studentMap.put(7,new Student(7,"小冯","male","1"));
+        studentMap.put(8,new Student(8,"小亮","male","1"));
+
     }
 
-    public List<Student> getAllStudent(){
+    public static List<Student> getAllStudent(){
         return new ArrayList<>(studentMap.values());
     }
 

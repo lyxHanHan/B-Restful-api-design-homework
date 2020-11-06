@@ -23,6 +23,16 @@ public class TeamService {
         teamMap.put(6,new Team(6,"Team6","6",null));
     }
     public List<Team> getAllTeams(){
+        List<Student> students = StudentService.getAllStudent();
+        teamMap.forEach((id,team) -> {
+            ArrayList teamStudents = new ArrayList<>();
+            for (int i = 0; i<students.size();i++) {
+                if((i%6+1) == id) {
+                    teamStudents.add(students.get(i));
+                }
+            }
+        team.setStudents(teamStudents);
+        });
         return new ArrayList<>(teamMap.values());
     }
 
